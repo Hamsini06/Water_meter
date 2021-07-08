@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:water_meter_app/register/login.dart';
 import 'package:water_meter_app/register/signup.dart';
+import 'textfields.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -32,42 +33,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Material(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    onPressed: (){
-                    Navigator.pushNamed(context, SignupScreen.id);
-                    },
-                    child: Text("Sign Up",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white
-                    ),),
-                    ),
-              ),
+            ButtonText(
+              colour: Colors.blueAccent,
+              text: 'Sign up',
+              onPressed: (){
+                Navigator.pushNamed(context, SignupScreen.id);
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Material(
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                  onPressed: (){
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  child: Text("Log In",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white
-                    ),),
-                ),
-              ),
-            ),
+      ButtonText(
+        colour: Colors.lightBlueAccent,
+        text: 'Log In',
+        onPressed: (){
+          Navigator.pushNamed(context, LoginScreen.id);
+        },
+      ),
           ],
         ),
 
@@ -75,3 +54,4 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 }
+
