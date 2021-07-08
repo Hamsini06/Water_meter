@@ -51,7 +51,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   FieldText("Username/Email", secure: false),
                   FieldText("Mobile Number", secure: false),
                   FieldText("Password", secure: true),
-                  ButtonText(text: "Sign Up"),
+                  ButtonText(
+                    colour: Colors.lightBlueAccent,
+                      text: "Sign Up",
+                    onPressed: (){},
+                  ),
                 ],
               ),
             ),
