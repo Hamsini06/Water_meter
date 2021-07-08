@@ -32,7 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             FieldText("Username/Email", secure: false,),
             FieldText("Password",secure: true,),
-            ButtonText(text: "Login"),
+            ButtonText(
+              colour: Colors.lightBlueAccent,
+                text: "Login",
+              onPressed: (){},
+
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
