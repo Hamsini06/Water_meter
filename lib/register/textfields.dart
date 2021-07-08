@@ -32,19 +32,22 @@ class FieldText extends StatelessWidget {
 
 class ButtonText extends StatelessWidget {
 
-  final String text;
-  ButtonText({required this.text});
+  final String  text;
+  final Color? colour;
+  final void Function() onPressed;
+  ButtonText({this.colour,required this.text, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0),
       child: Material(
-        color: Colors.blueAccent,
+        color:colour,
         borderRadius: BorderRadius.circular(25.0),
-        child: MaterialButton(onPressed: (){},
+        child: MaterialButton(onPressed: onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
-            child: Text(text,
+            child: Text(
+              text,
               style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.white,
