@@ -32,8 +32,10 @@ class FieldText extends StatelessWidget {
 
 class ButtonText extends StatelessWidget {
 
-  final String text;
-  ButtonText({required this.text});
+  final String  text;
+  final Color? colour;
+  final void Function() onPressed;
+  ButtonText({this.colour,required this.text, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,7 +46,8 @@ class ButtonText extends StatelessWidget {
         child: MaterialButton(onPressed: (){},
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
-            child: Text(text,
+            child: Text(
+              text,
               style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.white,
