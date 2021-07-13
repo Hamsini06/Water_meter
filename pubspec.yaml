@@ -21,6 +21,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - images/water-tap.png
+    - images/water-drops.png
 
   uses-material-design: true
 
