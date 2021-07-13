@@ -12,7 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 30.0,
               ),
-              FieldText("Username/Email", secure: false,control: myController,ontap: (){},),
-              FieldText("Password",secure: true,control: myController, ontap: (){},),
+              FieldText("Username/Email", secure: false,),
+              FieldText("Password",secure: true,),
               ButtonText(
                 colour: Colors.lightBlueAccent,
                 text: "Login",
