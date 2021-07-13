@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:water_meter_app/register/login.dart';
-import 'package:water_meter_app/register/signup.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static const String id = "homepage";
@@ -19,252 +19,260 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30.0),
-              child: Expanded(
-                flex: 2,
-                child: Row(
-                  children: [
-                    Container(
+            Expanded(
+             flex: 1,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 25.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Image.asset("images/water-tap.png",
-                        scale: 7.0,
+                        scale: 5,
                         alignment: Alignment.centerLeft,),
                       ),
                     ),
-                  SizedBox(
-                    width: 20.0,
                   ),
 
-                 Container(
-                   height: 170.0,
-                   width: 210.0,
-                   decoration: BoxDecoration(
-                     color: Color(0xffDEEDF0),
-                     borderRadius: BorderRadius.circular(20.0),
+
+               Expanded(
+                 child: Padding(
+                   padding: const EdgeInsets.all(4),
+                   child: Container(
+
+                     decoration: BoxDecoration(
+                       color: Color(0xffDEEDF0),
+                       borderRadius: BorderRadius.circular(15.0),
+                     ),
+
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Text("VALVE TIMINGS",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(
+                           fontSize: 15.0,
+
+                         ),),
+                         SizedBox(
+                           height: 20.0,
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text("ON"),
+                             SizedBox(
+                               width: 30.0,
+                             ),
+                             Text("---"),
+
+                           ],
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text("OFF"),
+                             SizedBox(
+                               width: 30.0,
+                             ),
+                             Text("---"),
+
+                           ],
+                         ),
+
+                       ],
+                     ),
                    ),
+                 ),
+               )
+                ],
 
-                   child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Text("VALVE TIMINGS",
-                       style: TextStyle(
-                         fontSize: 20.0,
-
-                       ),),
-                       SizedBox(
-                         height: 20.0,
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Text("ON"),
-                           SizedBox(
-                             width: 30.0,
-                           ),
-                           Text("---"),
-
-                         ],
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Text("OFF"),
-                           SizedBox(
-                             width: 30.0,
-                           ),
-                           Text("---"),
-
-                         ],
-                       ),
-
-                     ],
-                   ),
-                 )
-                  ],
-
-                ),
               ),
             ),
+
             Expanded(
-              flex: 3,
-              child: Column(
+              flex: 1,
+              child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 30.0),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 20.0,
+
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                            color: Colors.lightBlue.shade100,
+                          borderRadius: BorderRadius.circular(5.0)
                         ),
-                        Container(
+
+                          child: Text("Random text",
+                          style: TextStyle(
+                           fontSize: 15.0
+                          ),)),
+                    ),
+                  ),
+
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
                           padding: EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
-                            borderRadius: BorderRadius.circular(5.0)
+                              borderRadius: BorderRadius.circular(5.0)
                           ),
 
-                            child: Text("Random text",
+                          child: Text("Random Info",
                             style: TextStyle(
-                             fontSize: 15.0
-                            ),)),
-                        SizedBox(
-                          width: 90.0,
-                        ),
-                        Container(
-                            padding: EdgeInsets.all(16.0),
-                            decoration: BoxDecoration(
-                                color: Colors.lightBlue.shade100,
-                                borderRadius: BorderRadius.circular(5.0)
+                                fontSize: 15.0
                             ),
-
-                            child: Text("Random Info",
-                              style: TextStyle(
-                                  fontSize: 15.0
-                              ),)),
-                      ],
+                          )
+                      ),
                     ),
                   ),
-                  Row(
-                    children: [
-
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                                color: Color(0xffB5EAEA),
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                            ),
-                            child: Center(child: Text("info 1",)),
-
-
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                                color: Color(0xffB5EAEA),
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                            ),
-                            child: Center(child: Text("info 2",)),
-
-
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                                color: Color(0xffB5EAEA),
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                            ),
-                            child: Center(child: Text("info 3",)),
-
-
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                                color: Color(0xffB5EAEA),
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                            ),
-                            child: Center(child: Text("info 4",)),
-
-
-                          ),
-                        ),
-                      ),
-
-
-
-                    ],
-                  ),
-
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 30.0),
-              child: Expanded(
-                flex: 1,
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 15),
                 child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                children: [
+
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
                       child: Container(
-                        height: 130.0,
-                        width: 210.0,
                         decoration: BoxDecoration(
-                          color: Color(0xffDEEDF0),
-                          borderRadius: BorderRadius.circular(20.0),
+                            color: Color(0xffB5EAEA),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
                         ),
+                        child: Center(child: Text("info 1",)),
 
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("VALVE TIMINGS",
-                              style: TextStyle(
-                                fontSize: 20.0,
 
-                              ),),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("ON"),
-                                SizedBox(
-                                  width: 30.0,
-                                ),
-                                Text("---"),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xffB5EAEA),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                        ),
+                        child: Center(child: Text("info 2",)),
 
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("OFF"),
-                                SizedBox(
-                                  width: 30.0,
-                                ),
-                                Text("---"),
 
-                              ],
-                            ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xffB5EAEA),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                        ),
+                        child: Center(child: Text("info 3",)),
 
-                          ],
+
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xffB5EAEA),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                        ),
+                        child: Center(child: Text("info 4",)),
+
+
+                      ),
+                    ),
+                  ),
+
+
+
+                ],
+            ),
+              ),),
+
+
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Row(
+
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Container(
+
+                          decoration: BoxDecoration(
+                            color: Color(0xffDEEDF0),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("VALVE TIMINGS",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 15.0,
+
+                                ),),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("ON"),
+                                  SizedBox(
+                                    width: 30.0,
+                                  ),
+                                  Text("---"),
+
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("OFF"),
+                                  SizedBox(
+                                    width: 30.0,
+                                  ),
+                                  Text("---"),
+
+                                ],
+                              ),
+
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 20.0,
-                    ),
 
-
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 25.0),
-                        child: Image.asset("images/water-drops.png",
-                          scale: 7.0,
-                          alignment: Alignment.centerLeft,),
+                    Expanded(
+                      child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 5.0),
+                          child: Image.asset("images/water-drops.png",
+                            scale: 7.0,
+                            alignment: Alignment.center,),
+                        ),
                       ),
                     ),
                   ],
