@@ -3,6 +3,7 @@ import 'package:water_meter_app/ex.dart';
 import 'package:water_meter_app/homescreen/homepage.dart';
 import 'package:water_meter_app/register/signup.dart';
 import 'package:water_meter_app/register/textfields.dart';
+import 'package:water_meter_app/Database_helper.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = "login_screen";
@@ -12,6 +13,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final dbHelper = DatabaseHelper.instance;
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,13 +39,20 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 30.0,
               ),
-              FieldText("Username/Email", secure: false,),
-              FieldText("Password",secure: true,),
+              FieldText("Username/Email", secure: false,control: userNameController),
+              FieldText("Password",secure: true,control: passwordController),
               ButtonText(
                 colour: Colors.lightBlueAccent,
                 text: "Login",
-                onPressed: (){
-                  Navigator.pushNamed(context, Example.id);
+                onPressed: () async{
+
+
+                  final id = await loginUser();
+                  if(id != null){
+                    Navigator.pushNamed(context, Example.id);
+                  }
+
+
                 },
 
               ),
@@ -62,4 +76,20 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  Future loginUser() async {
+    List<Map<String, dynamic>> data = await dbHelper.checkLogin(userNameController.text, passwordController.text);
+    if(data.length > 0){
+      Map<String, dynamic> login_rows = {
+        DatabaseHelper.userName: userNameController.text,
+        DatabaseHelper.password: passwordController.text
+      };
+      final id = await dbHelper.insert_data(DatabaseHelper.table_login,login_rows);
+      print("id inserted in login table is $id");
+      return id;
+    }
+
+  }
+
+
 }
