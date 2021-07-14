@@ -18,271 +18,278 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-        body: Column(
-           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-             flex: 1,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
-                        child: Image.asset("images/water-tap.png",
-                        scale: 5,
-                        alignment: Alignment.centerLeft,),
-                      ),
-                    ),
-                  ),
-
-
-               Expanded(
-                 child: Padding(
-                   padding: const EdgeInsets.all(4),
-                   child: Container(
-
-                     decoration: BoxDecoration(
-                       color: Color(0xffDEEDF0),
-                       borderRadius: BorderRadius.circular(15.0),
-                     ),
-
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Text("VALVE TIMINGS",
-                         textAlign: TextAlign.center,
-                         style: TextStyle(
-                           fontSize: 15.0,
-
-                         ),),
-                         SizedBox(
-                           height: 20.0,
-                         ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Text("ON"),
-                             SizedBox(
-                               width: 30.0,
-                             ),
-                             Text("---"),
-
-                           ],
-                         ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Text("OFF"),
-                             SizedBox(
-                               width: 30.0,
-                             ),
-                             Text("---"),
-
-                           ],
-                         ),
-
-                       ],
-                     ),
-                   ),
-                 ),
-               )
-                ],
-
-              ),
-            ),
-
-            Expanded(
-              flex: 1,
-              child: Row(
-                children: [
-
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        padding: EdgeInsets.all(16.0),
-                        decoration: BoxDecoration(
-                            color: Colors.lightBlue.shade100,
-                          borderRadius: BorderRadius.circular(5.0)
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+               flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Image.asset("images/water-tap.png",
+                            scale: 10,
+                            alignment: Alignment.centerLeft,),
+                          ),
                         ),
+                      ),
 
-                          child: Text("Random text",
-                          style: TextStyle(
-                           fontSize: 15.0
-                          ),)),
-                    ),
+
+                   Expanded(
+                     flex: 2,
+                     child: Container(
+
+                       decoration: BoxDecoration(
+                         color: Color(0xffDEEDF0),
+                         borderRadius: BorderRadius.circular(15.0),
+                       ),
+
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Text("VALVE TIMINGS",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 15.0,
+
+                           ),),
+                           SizedBox(
+                             height: 20.0,
+                           ),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             children: [
+                               Text("ON"),
+                               SizedBox(
+                                 width: 30.0,
+                               ),
+                               Text("---"),
+
+                             ],
+                           ),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             children: [
+                               Text("OFF"),
+                               SizedBox(
+                                 width: 30.0,
+                               ),
+                               Text("---"),
+
+                             ],
+                           ),
+
+                         ],
+                       ),
+                     ),
+                   )
+                    ],
+
                   ),
+                ),
+              ),
 
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
                           padding: EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                               color: Colors.lightBlue.shade100,
-                              borderRadius: BorderRadius.circular(5.0)
+                            borderRadius: BorderRadius.circular(5.0)
                           ),
 
-                          child: Text("Random Info",
+                            child: Text("Random text",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 15.0
-                            ),
-                          )
+                             fontSize: 15.0
+                            ),)),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: Row(
-                children: [
 
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xffB5EAEA),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                        ),
-                        child: Center(child: Text("info 1",)),
-
-
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xffB5EAEA),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                        ),
-                        child: Center(child: Text("info 2",)),
-
-
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xffB5EAEA),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                        ),
-                        child: Center(child: Text("info 3",)),
-
-
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xffB5EAEA),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
-                        ),
-                        child: Center(child: Text("info 4",)),
-
-
-                      ),
-                    ),
-                  ),
-
-
-
-                ],
-            ),
-              ),),
-
-
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Row(
-
-                  children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Container(
+                            padding: EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlue.shade100,
+                                borderRadius: BorderRadius.circular(5.0)
+                            ),
 
-                          decoration: BoxDecoration(
-                            color: Color(0xffDEEDF0),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("VALVE TIMINGS",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-
-                                ),),
-                              SizedBox(
-                                height: 20.0,
+                            child: Text("Random Info",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 15.0
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("ON"),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text("---"),
-
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("OFF"),
-                                  SizedBox(
-                                    width: 30.0,
-                                  ),
-                                  Text("---"),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 5.0),
-                          child: Image.asset("images/water-drops.png",
-                            scale: 7.0,
-                            alignment: Alignment.center,),
+                            )
                         ),
                       ),
                     ),
                   ],
-
                 ),
               ),
-            ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: Row(
+                  children: [
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffB5EAEA),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                          ),
+                          child: Center(child: Text("info 1",)),
 
 
-          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffB5EAEA),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                          ),
+                          child: Center(child: Text("info 2",)),
+
+
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffB5EAEA),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                          ),
+                          child: Center(child: Text("info 3",)),
+
+
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffB5EAEA),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0),bottomLeft: Radius.circular(20.0))
+                          ),
+                          child: Center(child: Text("info 4",)),
+
+
+                        ),
+                      ),
+                    ),
+
+
+
+                  ],
+              ),
+                ),),
+
+
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Row(
+
+                    children: [
+                      Expanded(
+                        flex:2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: Container(
+
+                            decoration: BoxDecoration(
+                              color: Color(0xffDEEDF0),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("VALVE TIMINGS",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+
+                                  ),),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("ON"),
+                                    SizedBox(
+                                      width: 30.0,
+                                    ),
+                                    Text("---"),
+
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("OFF"),
+                                    SizedBox(
+                                      width: 30.0,
+                                    ),
+                                    Text("---"),
+
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Expanded(
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 5.0),
+                            child: Image.asset("images/water-drops.png",
+                              scale: 8.0,
+                              alignment: Alignment.centerRight,),
+                          ),
+                        ),
+                      ),
+                    ],
+
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
         ),
 
 
