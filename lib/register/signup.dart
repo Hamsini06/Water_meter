@@ -30,66 +30,69 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Flexible(
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20.0,
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Text("Sign Up",
+                      style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Icon(
+                      FontAwesomeIcons.tint,
+                      size: 40.0,
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+
+                      FieldText("First Name", secure: false, control: firstNameController),
+                      FieldText("Last Name", secure: false,control: lastNameController ),
+                      FieldText("Username/Email", secure: false,control: userNameController),
+                      FieldText("Mobile Number", secure: false, control: numberController ),
+                      FieldText("Password", secure: true, control: passwordController),
+                      ButtonText(
+                          colour: Colors.lightBlueAccent,
+                          text: "Sign Up",
+                          onPressed: (){
+                            final id = _insert();
+                            if(id != null) {
+                              Navigator.pushNamed(context, LoginScreen.id);
+                            }
+
+                          }
+                      ),
+                      // ButtonText(
+                      //     colour: Colors.lightBlueAccent,
+                      //     text: "blah",
+                      //     onPressed: (){
+                      //       _query();
+                      //
+                      //     }
+                      // ),
+                    ],
                   ),
-                  Text("Sign Up",
-                    style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold
-                    ),),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Icon(
-                    FontAwesomeIcons.tint,
-                    size: 40.0,
-                  )
-                ],
-              ),
+                ),
+
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-
-                  FieldText("First Name", secure: false, control: firstNameController),
-                  FieldText("Last Name", secure: false,control: lastNameController ),
-                  FieldText("Username/Email", secure: false,control: userNameController),
-                  FieldText("Mobile Number", secure: false, control: numberController ),
-                  FieldText("Password", secure: true, control: passwordController),
-                  ButtonText(
-                    colour: Colors.lightBlueAccent,
-                    text: "Sign Up",
-                   onPressed: (){
-                      final id = _insert();
-                      if(id != null) {
-                        Navigator.pushNamed(context, LoginScreen.id);
-                      }
-
-                   }
-                  ),
-                  // ButtonText(
-                  //     colour: Colors.lightBlueAccent,
-                  //     text: "blah",
-                  //     onPressed: (){
-                  //       _query();
-                  //
-                  //     }
-                  // ),
-                ],
-              ),
-            ),
-
-          ],
+          ),
         ),
 
       ),
