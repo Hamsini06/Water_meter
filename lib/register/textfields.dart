@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class FieldText extends StatelessWidget {
-
   final String text;
   final bool secure;
-  FieldText(this.text,{required this.secure});
+  final TextEditingController control;
+  FieldText(this.text,{required this.secure,required this.control});
 
 
   @override
@@ -12,6 +12,7 @@ class FieldText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, 10.0, 7.0, 10.0),
       child: TextField(
+        controller: control,
         obscureText: secure,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
