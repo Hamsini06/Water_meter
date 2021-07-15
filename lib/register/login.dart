@@ -6,6 +6,7 @@ import 'package:water_meter_app/register/textfields.dart';
 import 'package:water_meter_app/Database_helper.dart';
 
 class LoginScreen extends StatefulWidget {
+
   static const String id = "login_screen";
 
   @override
@@ -13,7 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isValidated = false;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool logIn = true;
   final dbHelper = DatabaseHelper.instance;
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -31,32 +35,72 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120.0,vertical: 20.0),
-                    child: Text("Login",
-                      style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold
-                      ),),
+                  Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 120.0,vertical: 20.0),
+                      child: Text("Login",
+                        style: TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold
+                        ),),
+                    ),
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
-                  FieldText("Username/Email", secure: false,control: userNameController),
-                  FieldText("Password",secure: true,control: passwordController),
+                  FieldText("Username/Email", secure: false,control: userNameController,validator: (value){
+                    if(value!.isNotEmpty && value.contains(RegExp(r'[0-9]'))){
+                      return "This field takes in only characters";
+                    }
+                    else if(value.isEmpty)
+                      return"this field is required";
+                  }, ),
+                  FieldText("Password", secure: true, control: passwordController, validator: (value){
+                    if(value!.isEmpty){
+                      return"this field is required";
+                    }
+                    else if(value.length < 6){
+                      return "this field requires atleast 6 characters";
+                    }
+                  },
+                  ),
                   ButtonText(
                     colour: Colors.lightBlueAccent,
                     text: "Login",
-                    onPressed: () async{
-
-
-                      final id = await loginUser();
-                      if(id != null){
-                        Navigator.pushNamed(context, Example.id);
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        isValidated = true;
                       }
-
-
-                    },
+                      if (isValidated == true) {
+                        isValidated = false;
+                        bool value = await dbHelper.checkExistingLogin(
+                            userNameController.text, passwordController.text);
+                        if (value == true) {
+                          Navigator.pushNamed(context, Example.id);
+                        }
+                        else {
+                          final id = await loginUser();
+                          if (id != null) {
+                            Navigator.pushNamed(context, Example.id);
+                          }
+                          else {
+                            logIn = false;
+                            showDialog(context: context, builder: (context) {
+                              return AlertDialog(
+                                title: TextButton(
+                                    child: Text("Try Again"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }
+                                ),
+                              );
+                            }
+                            );
+                          }
+                        }
+                      }
+                    }
 
                   ),
                   Row(
@@ -73,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),),
                       )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -94,6 +138,11 @@ class _LoginScreenState extends State<LoginScreen> {
       return id;
     }
 
+  }
+
+  void _query() async {
+    final allRows = await dbHelper.queryAllRows(DatabaseHelper.table_login);
+    print(allRows);
   }
 
 
