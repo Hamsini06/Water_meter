@@ -78,7 +78,7 @@ class DatabaseHelper {
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
+  Future<List<Map<String, dynamic>>> queryAllRows(String table) async {
     Database? db = await instance.database;
     return await db!.query(table);
   }
@@ -90,9 +90,9 @@ class DatabaseHelper {
 
   // Deletes the row specified by the id. The number of affected rows is
   // returned. This should be 1 as long as the row exists.
-  Future<int> delete(int id) async {
+  Future<int> delete(String table, int id) async {
     Database? db = await instance.database;
-    return await db!.delete(table, where: '$columnId = ?', whereArgs: [id]);
+    return await db!.delete(table, where: "$columnId = ?", whereArgs: [id]);
   }
 
 // All of the methods (insert, query, update, delete) can also be done using
@@ -102,4 +102,18 @@ class DatabaseHelper {
     var res = await db!.rawQuery("select * from $table where $userName = '$username' and $password = '$passwd' ");
     return res;
   }
+
+  Future<bool> checkExistingLogin(String username, String passwd) async {
+    Database? db = await instance.database;
+    var res = await db!.rawQuery("select * from $table_login where $userName = '$username' and $password = '$passwd' ");
+    if(res.length > 0){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
+
 }
