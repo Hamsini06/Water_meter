@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 class FieldText extends StatelessWidget {
   final String text;
   final bool secure;
   final TextEditingController control;
-  FieldText(this.text,{required this.secure,required this.control});
+  final String? Function(String?)? validator;
+  final TextInputType? type;
+
+
+  FieldText(this.text,{required this.secure,required this.control,this.validator, this.type });
 
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, 10.0, 7.0, 10.0),
-      child: TextField(
+      child: TextFormField(
+        keyboardType: type,
+        validator: validator,
         controller: control,
         obscureText: secure,
         decoration: InputDecoration(
