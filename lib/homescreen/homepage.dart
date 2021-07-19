@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'widgets_homescreen.dart';
+//added this line as i changed the folder
+import 'package:water_meter_app/Refactored_widgets/widgets_homescreen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = "homepage";
