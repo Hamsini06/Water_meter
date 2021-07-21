@@ -15,3 +15,9 @@
   get: receives no data in the body
     returns status 200 { message: 'successfully logged out' }
     returns status 500 { message: 'something went wrong' } on internal server error
+
+/viewdetails?inJSON=true
+  get: NOTE: needs a inJSON query as above to get data in the form of JSON else webpage is rendered
+    returns status 200 { data }
+    returns status 500 { message: 'something went wrong' } on internal server error or anyother error
+    returns status 401 { message: 'Unauthorized access' }
