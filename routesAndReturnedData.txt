@@ -11,3 +11,7 @@
     returns status 200 { message: 'account creation succesful' }
         
   
+/logout
+  get: receives no data in the body
+    returns status 200 { message: 'successfully logged out' }
+    returns status 500 { message: 'something went wrong' } on internal server error
