@@ -1,0 +1,13 @@
+/login
+  post: receives data in req.body: { username, password }
+    returns status 500 { message: 'something went wrong' } on internal server error
+    returns status 401 { message: 'failure' } on unauthorized login i.e. wrong username or password
+    returns status 200 { message: 'success' } on successful login
+
+/register
+  post: receives data in req.body { firstName, lastName, mobileNo, aadharNo, password, username }
+    returns status 409 { message: 'customer with aadharNo/ username already exists' } on conflict of aadharNo or username
+    returns status 500 { message: 'something went wrong' } on internal server error
+    returns status 200 { message: 'account creation succesful' }
+        
+  
