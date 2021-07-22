@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:water_meter_app/ex.dart';
-import 'package:water_meter_app/register/signup.dart';
-import 'package:water_meter_app/register/textfields.dart';
-import 'package:water_meter_app/Database_helper.dart';
+import 'package:meter_app/ex.dart';
+import 'package:meter_app/homescreen/homepage.dart';
+import 'package:meter_app/register/signup.dart';
+import 'package:meter_app/register/textfields.dart';
+import 'package:meter_app/networking.dart';
 
 class LoginScreen extends StatefulWidget {
-
   static const String id = "login_screen";
 
   @override
@@ -14,15 +15,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool isValidated = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool logIn = true;
-  final dbHelper = DatabaseHelper.instance;
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
-
-  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
                   Form(
                     key: _formKey,
                     child: Padding(
@@ -65,42 +60,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                   },
                   ),
+
                   ButtonText(
                     colour: Colors.lightBlueAccent,
                     text: "Login",
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        isValidated = true;
-                      }
-                      if (isValidated == true) {
-                        isValidated = false;
-                        bool value = await dbHelper.checkExistingLogin(
-                            userNameController.text, passwordController.text);
-                        if (value == true) {
-                          Navigator.pushNamed(context, Example.id);
-                        }
-                        else {
-                          final id = await loginUser();
-                          if (id != null) {
-                            Navigator.pushNamed(context, Example.id);
-                          }
-                          else {
-                            logIn = false;
-                            showDialog(context: context, builder: (context) {
-                              return AlertDialog(
-                                title: TextButton(
-                                    child: Text("Try Again"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    }
-                                ),
-                              );
-                            }
-                            );
-                          }
-                        }
-                      }
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Processing Data')));
+    }
+                      Map<dynamic, dynamic> message = await Network().postLoginData(userNameController.text,passwordController.text);
+    if(message["statusCode"] == 200 && message["message"]!= " "){
+      Navigator.pushNamed(context, Example.id);
+    }
+    else if(message["statusCode"] == 401){
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Wrong username/password')));
+      Timer(Duration(milliseconds: 3000), (){
+        userNameController.clear();
+        passwordController.clear();
+      });
+    }
+    else{
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error')));
+    }
                     }
+
 
                   ),
                   Row(
@@ -117,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),),
                       )
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
@@ -125,25 +111,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  Future loginUser() async {
-    List<Map<String, dynamic>> data = await dbHelper.checkLogin(userNameController.text, passwordController.text);
-    if(data.length > 0){
-      Map<String, dynamic> loginRows = {
-        DatabaseHelper.userName: userNameController.text,
-        DatabaseHelper.password: passwordController.text
-      };
-      final id = await dbHelper.insert_data(DatabaseHelper.table_login,loginRows);
-      print("id inserted in login table is $id");
-      return id;
-    }
-
-  }
-
-  void _query() async {
-    final allRows = await dbHelper.queryAllRows(DatabaseHelper.table_login);
-    print(allRows);
-  }
-
-
 }
