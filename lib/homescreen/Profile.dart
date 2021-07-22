@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meter_app/register/textfields.dart';
+import 'package:meter_app/networking.dart';
 class ProfilePage extends StatefulWidget {
 
   @override
@@ -124,10 +125,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     Row(
                       children: [
                         ProfileButton((){
-                          setState(() {
-                            value = false;
+//                           setState(() {
+//                             value = false;
 
-                          });
+//                           });
+                           Network dataHelper = Network();
+                           dataHelper.getUserData();
                         }, "Back", value, EdgeInsets.only(right: 20.0, left: 50.0)),
                         ProfileButton(() async {
 
