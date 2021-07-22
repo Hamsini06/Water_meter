@@ -1,4 +1,4 @@
-name: water_meter_app
+name: meter_app
 description: A new Flutter project.
 
 
@@ -15,8 +15,10 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^9.1.0
-  sqflite: ^2.0.0+3
-  path_provider: ^2.0.2
+  http: ^0.13.3
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +28,7 @@ flutter:
   assets:
     - images/water-tap.png
     - images/water-drops.png
+    - images/bgcolor.jpg
 
   uses-material-design: true
 
