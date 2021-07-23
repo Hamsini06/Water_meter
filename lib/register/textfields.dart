@@ -66,3 +66,33 @@ class ButtonText extends StatelessWidget {
     );
   }
 }
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({required this.value,required this.title,required this.icon});
+
+  final bool value;
+  final String title;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding:EdgeInsets.all(8.0),
+      child: ListTile(
+        subtitle: ProfileText(value),
+
+
+        title:Text(
+            title,
+            style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15
+            )
+        ),
+        leading: Icon(
+          icon,
+          size: 30,
+        ),
+      ),
+    );
+  }
+}
