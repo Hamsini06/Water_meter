@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class Network {
-  Map<String, String> headers = {};
-  Map<String, String> cookies = {};
+  static Map<String, String> headers = {};
+  static Map<String, String> cookies = {};
   void _updateCookie(http.Response response) {
     String? allSetCookie = response.headers!['set-cookie'];
 
@@ -42,6 +42,15 @@ class Network {
     }
   }
 
+  
+  Map<String, String> getHeadersCustom() {
+    Map<String, String> headersToSend = {};
+    headersToSend.addAll(headers);
+    if (cookies.isNotEmpty)
+      headersToSend.addEntries({MapEntry('cookie', _generateCookieHeader())});
+    return headersToSend;
+  }
+
   String _generateCookieHeader() {
     String cookie = "";
 
@@ -61,7 +70,7 @@ class Network {
     var url = Uri.parse(
         "https://murmuring-escarpment-87613.herokuapp.com/login");
     var response = await http.post(url,
-        headers: headers,
+        headers: getHeadersCustom(),
         body: {
           "username": username,
           "password": password
@@ -88,7 +97,7 @@ class Network {
     var url = Uri.parse(
         "https://murmuring-escarpment-87613.herokuapp.com/register");
     var response = await http.post(url,
-        headers: headers,
+        headers: getHeadersCustom(),
         body: {
           "firstName": firstname,
           "lastName": lastname,
@@ -109,7 +118,7 @@ class Network {
   Future getUserData() async {
     var url = Uri.parse(
         "https://murmuring-escarpment-87613.herokuapp.com/viewdetails?inJSON=true");
-    var response = await http.get(url, headers: headers);
+    var response = await http.get(url, headers: getHeadersCustom());
     _updateCookie(response);
     print(headers);
     print(response.statusCode);
