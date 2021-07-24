@@ -6,6 +6,7 @@ import 'package:meter_app/homescreen/homepage.dart';
 import 'package:meter_app/register/signup.dart';
 import 'package:meter_app/register/textfields.dart';
 import 'package:meter_app/networking.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = "login_screen";
@@ -85,7 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Error')));
     }
+    setState(() {
+      Provider.of<Data>(context,listen: false).getData();
+    });
+
                     }
+
 
 
                   ),
