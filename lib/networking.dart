@@ -1,17 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Network {
   static Map<String, String> headers = {};
-  static Map<String, String> cookies = {};
+  Map<String, String> cookies = {};
+  Map text = {};
+  String title = "";
+
   void _updateCookie(http.Response response) {
-    String? allSetCookie = response.headers!['set-cookie'];
+    String? allSetCookie = response.headers['set-cookie'];
 
     if (allSetCookie != null) {
-
       var setCookies = allSetCookie.split(',');
 
       for (var setCookie in setCookies) {
@@ -23,7 +27,7 @@ class Network {
       }
 
       headers['cookie'] = _generateCookieHeader();
-      headers['content-type'] = "text/json";
+      headers['Content-Type'] = "text/json";
     }
   }
 
@@ -42,7 +46,7 @@ class Network {
     }
   }
 
-  
+
   Map<String, String> getHeadersCustom() {
     Map<String, String> headersToSend = {};
     headersToSend.addAll(headers);
@@ -115,14 +119,50 @@ class Network {
     return getData;
   }
 
-  Future getUserData() async {
+
+  Future postUpdatedData(String mobile) async {
+    var responseData = " ";
+    int responseStatusCode;
+    Map getData = {};
+    var url = Uri.parse(
+        "https://murmuring-escarpment-87613.herokuapp.com/updateProfile");
+    var response = await http.post(url,
+        headers: getHeadersCustom(),
+        body: jsonEncode({
+          "newMobileNo": mobile
+        }));
+    responseStatusCode = response.statusCode;
+    responseData = response.body;
+    getData = {
+      "statusCode": responseStatusCode,
+      "message": responseData
+    };
+    return getData;
+  }
+
+  Future<Map> getUserData() async {
+    Map userData = {};
     var url = Uri.parse(
         "https://murmuring-escarpment-87613.herokuapp.com/viewdetails?inJSON=true");
     var response = await http.get(url, headers: getHeadersCustom());
-    _updateCookie(response);
-    print(headers);
-    print(response.statusCode);
-    print(response.body);
+    userData = {"data": response.body, "statusCode": response.statusCode};
+    print(userData);
+    return userData;
   }
 
+
+
+}
+class Data extends ChangeNotifier{
+Map data = {};
+
+  void getData() async {
+    Map userdata = await Network().getUserData();
+    if(userdata["statusCode"] == 200 && userdata["data"] != " "){
+      data = jsonDecode(userdata["data"]);
+      print(data);
+      notifyListeners();
+    }
+
+  }
 }
