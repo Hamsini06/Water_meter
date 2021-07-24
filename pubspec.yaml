@@ -17,6 +17,7 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   http: ^0.13.3
   provider: ^5.0.0
+  fl_chart: ^0.36.3
 
 
 
@@ -29,7 +30,6 @@ flutter:
   assets:
     - images/water-tap.png
     - images/water-drops.png
-    - images/bgcolor.jpg
 
   uses-material-design: true
 
