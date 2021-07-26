@@ -7,3 +7,12 @@ class Data{
 
 
 }
+class MonthData{
+  MonthData({ required this.month, required this.monthValue});
+  int month;
+  double monthValue;
+
+
+
+
+}
