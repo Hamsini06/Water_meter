@@ -1,89 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'widgets_graph.dart';
-class GraphCard extends StatelessWidget {
-  List<BarChartGroupData> itemData(){
-    return BarRod().barData.map(
-          (data)=>BarChartGroupData(
-        x: data.day,
-        barRods: [
-          BarChartRodData(y: data.value, colors: [Colors.lightBlueAccent, Colors.greenAccent])
-        ],
-        showingTooltipIndicators: [0],
-      ),
-    ).toList();
-  }
+import 'constants.dart';
+enum gender { daily, monthly }
+class GraphCard extends StatefulWidget {
+  @override
+  _GraphCardState createState() => _GraphCardState();
+}
+
+class _GraphCardState extends State<GraphCard> {
+
+  dynamic segmentedControlValue = 1;
+  dynamic barChart=barChartDaily;
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 15.0),
-      child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color:  const Color(0xFF00008B),
-        child: Container(
-          padding: EdgeInsets.all(8),
-          child: BarChart(
-            BarChartData(
-              alignment: BarChartAlignment.spaceAround,
-              maxY: 20,
-              barTouchData: BarTouchData(
-                enabled: false,
-                touchTooltipData: BarTouchTooltipData(
-                  tooltipBgColor: Colors.transparent,
-                  tooltipPadding: const EdgeInsets.all(0),
-                  tooltipMargin: 8,
-                  getTooltipItem: (
-                      BarChartGroupData group,
-                      int groupIndex,
-                      BarChartRodData rod,
-                      int rodIndex,
-                      ) {
-                    return BarTooltipItem(
-                      rod.y.round().toString(),
-                      TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
+    return  AspectRatio(
+      aspectRatio: 1.1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 15.0),
+        child: Card(
+          elevation: 2,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          color:  const Color(0xFF00008B),
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Center(
+                  child: CupertinoSlidingSegmentedControl(
+                  groupValue: segmentedControlValue,
+                  backgroundColor: Colors.blue,
+                  children: <int, Widget>{
+                    1: Text("Daily"),
+                    2: Text("Monthly"),
                   },
+                  onValueChanged: (i) {
+                    setState(() {
+                      segmentedControlValue = i;
+                      if(segmentedControlValue==1){
+                        text = "12";
+                        barChart=barChartDaily;
+                      }else{
+                        text ="34";
+                        barChart=barChartMonthly;
+                      }
+                    });
+                  }),
                 ),
-              ),
-              titlesData: FlTitlesData(
-                show: true,
-                bottomTitles: SideTitles(
-                  showTitles: true,
-                  getTextStyles: (value) => const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
-                  margin: 20,
-                  getTitles: (double value) {
-                    switch (value.toInt()) {
-                      case 0:
-                        return 'Mn';
-                      case 1:
-                        return 'Te';
-                      case 2:
-                        return 'Wd';
-                      case 3:
-                        return 'Th';
-                      case 4:
-                        return 'Fr';
-                      case 5:
-                        return 'St';
-                      case 6:
-                        return 'Sn';
-                      default:
-                        return '';
-                    }
-                  },
+
+
+
+                Text(
+                  text,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-                leftTitles: SideTitles(showTitles: false),
-              ),
-              borderData: FlBorderData(
-                show: false,
-              ),
-              barGroups: itemData()  ,
+                barChart
+
+              ],
             ),
           ),
         ),
