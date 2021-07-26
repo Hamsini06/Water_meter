@@ -50,7 +50,7 @@ class _GraphCardState extends State<GraphCard> {
                         text = "12";
                         barChart=barChartDaily;
                       }else{
-                        text ="34";
+                        text ="100";
                         barChart=barChartMonthly;
                       }
                     });
