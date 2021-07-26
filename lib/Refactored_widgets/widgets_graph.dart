@@ -1,7 +1,5 @@
 import 'data.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-class BarRod extends ChangeNotifier{
+class BarRod {
     List<Data> barData = [
         Data(
             day: 0,
@@ -33,6 +31,27 @@ class BarRod extends ChangeNotifier{
         ),
     ];
 
+List<MonthData> monthBarData= [
+    MonthData(month: 0, monthValue: 100),
+    MonthData(month: 1, monthValue: 60),
+    MonthData(month: 2, monthValue: 90),
+    MonthData(month: 3, monthValue: 80),
+    MonthData(month: 4, monthValue: 100),
+    MonthData(month: 5, monthValue: 50),
+    MonthData(month: 6, monthValue: 100),
+    MonthData(month: 7, monthValue: 81),
+    MonthData(month: 8, monthValue: 95),
+
+    MonthData(month: 9, monthValue: 100),
+
+    MonthData(month: 10, monthValue: 58),
+
+    MonthData(month: 11, monthValue: 77),
+
+
+
+];
+
 
 
 
@@ -45,6 +64,7 @@ class BarRod extends ChangeNotifier{
 
 
 }
+
 
 
 
