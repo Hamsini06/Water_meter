@@ -22,7 +22,6 @@ List<BarChartGroupData> itemDataMonth(){
         BarChartRodData(
             y: data.monthValue,
             colors: [Colors.lightBlueAccent, Colors.greenAccent],
-          width: 7
         )
       ],
       showingTooltipIndicators: [0],
@@ -102,14 +101,14 @@ Expanded barChartDaily = Expanded(
 Widget barChartMonthly =  SingleChildScrollView(
   scrollDirection: Axis.horizontal,
   child: Container(
-    height: 170,
-    width:470,
+    height: 210,
+    width:585,
     child: Padding(
-        padding: EdgeInsets.only(top:20,left:8,right: 8),
+        padding: EdgeInsets.only(top:25,left:10,right: 10),
         child:BarChart(
           BarChartData(
 
-            maxY: 120,
+            maxY: 125,
             barTouchData: BarTouchData(
               enabled: false,
               touchTooltipData: BarTouchTooltipData(
