@@ -21,7 +21,7 @@ class _GraphCardState extends State<GraphCard> {
   @override
   Widget build(BuildContext context) {
     return  AspectRatio(
-      aspectRatio: 1.1,
+      aspectRatio: 1,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 15.0),
         child: Card(
@@ -50,7 +50,7 @@ class _GraphCardState extends State<GraphCard> {
                         text = "12";
                         barChart=barChartDaily;
                       }else{
-                        text ="100";
+                        text ="81";
                         barChart=barChartMonthly;
                       }
                     });
@@ -59,13 +59,16 @@ class _GraphCardState extends State<GraphCard> {
 
 
 
-                Text(
-                  text,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
                 barChart
