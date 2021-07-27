@@ -17,17 +17,7 @@ class _GraphPageState extends State<GraphPage> {
            crossAxisAlignment: CrossAxisAlignment.stretch,
           children:[
             Expanded(child: GraphCard()),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Card(
-                  color: Colors.blue,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text("hello",
-                    textAlign: TextAlign.center,),
-                  ),
-
+          
                 ),
               ),
             )
