@@ -22,6 +22,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,6 +31,8 @@ flutter:
   assets:
     - images/water-tap.png
     - images/water-drops.png
+    - images/paytm.png
+
 
   uses-material-design: true
 
